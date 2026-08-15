@@ -35,6 +35,13 @@ CREATE TABLE visitas (
   FOREIGN KEY (categoria_id) REFERENCES categoria(id) ON DELETE CASCADE,
   UNIQUE (fecha, categoria_id)
 );
+CREATE TABLE visitas_pagina (
+  id SERIAL PRIMARY KEY,
+  fecha DATE NOT NULL DEFAULT CURRENT_DATE,
+  pagina VARCHAR(50) NOT NULL,
+  cantidad INTEGER NOT NULL DEFAULT 0,
+  UNIQUE (fecha, pagina)
+);
 
 INSERT INTO categoria (nombre) VALUES
 ('albañiles'),

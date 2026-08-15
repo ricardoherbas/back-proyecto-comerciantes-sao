@@ -1,7 +1,6 @@
 const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
-const sincronizarVisitas = require('../services/sincronizarVisitas')
 
 class Server {
   constructor() {
@@ -10,7 +9,6 @@ class Server {
     this.middleware()
     this.rutas()
     this.errorHandler()
-    this.iniciarSincronizacion()
   }
 
   middleware() {
@@ -25,13 +23,6 @@ class Server {
     this.app.use('/api/publicacion', require('../routes/publicacion.routes'))
     this.app.use('/api/login', require('../routes/login.routes'))
     this.app.use('/api/estadisticas', require('../routes/estadisticas.routes'))
-  }
-
-  iniciarSincronizacion() {
-    sincronizarVisitas()
-    this.intervaloSincronizacion = setInterval(() => {
-      sincronizarVisitas()
-    }, 5 * 60 * 1000)
   }
 
   errorHandler() {
