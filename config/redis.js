@@ -1,6 +1,7 @@
 const { createClient } = require("redis");
 const redis = createClient({
-  url: process.env.REDIS_URL || `redis://${process.env.REDIS_HOST || "redis"}:${process.env.REDIS_PORT || 6379}`
+  url: process.env.REDIS_URL || `redis://${process.env.REDIS_HOST || "redis"}:${process.env.REDIS_PORT || 6379}`,
+  socket: { connectTimeout: 10000 } // 10 segundos
 });
 redis.on("error", error => {
   console.error("Error de Redis:", error);
