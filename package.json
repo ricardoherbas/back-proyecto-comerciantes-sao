@@ -27,5 +27,8 @@
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.2.0",
     "pg": "^8.22.0"
+  },
+  "engines": {
+  "node": "18.x"
   }
 }
