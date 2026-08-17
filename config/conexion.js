@@ -1,14 +1,16 @@
-const { Pool } = require("pg");
+const { Pool } = require('pg');
+const dns = require('dns');
+
+// 🔹 Forzar IPv4 para evitar ENETUNREACH
+dns.setDefaultResultOrder('ipv4first');
 
 const pool = new Pool({
-  host: process.env.DB_HOST,       // ej: db.xxxxx.supabase.co
-  port: process.env.DB_PORT || 5432,
-  user: process.env.DB_USER,       // normalmente 'postgres'
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME || 'postgres',
-  ssl: {
-    rejectUnauthorized: false      // necesario para Supabase
-  }
+  database: process.env.DB_NAME,
+  ssl: { rejectUnauthorized: false } // necesario para Supabase
 });
 
 module.exports = pool;
