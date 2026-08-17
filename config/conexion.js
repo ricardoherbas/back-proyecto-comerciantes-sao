@@ -1,13 +1,12 @@
 const { Pool } = require("pg");
 
-const conexion = new Pool({
-  connectionString: process.env.DATABASE_URL || null,
-  host: process.env.DB_HOST || "db",
-  user: process.env.DB_USER || "user",
-  password: process.env.DB_PASSWORD || "1234",
-  database: process.env.DB_NAME || "miapp",
-  port: 5432,
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  ssl: false // no hace falta SSL dentro de la red interna
 });
 
-module.exports = conexion;
+module.exports = pool;
