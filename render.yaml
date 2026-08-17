@@ -1,5 +1,5 @@
 services:
-  - type: web
+  - type: pserv
     name: postgres-proyecto-comerciantes-costeros
     env: docker
     plan: starter
@@ -12,10 +12,10 @@ services:
         value: 1234
       - key: POSTGRES_DB
         value: miapp
-    volumes:
-      - name: db_data
-        mountPath: /var/lib/postgresql/data
-        sizeGB: 20
+    disk:
+      name: db_data
+      mountPath: /var/lib/postgresql/data
+      sizeGB: 20
 
   - type: web
     name: api-backend
@@ -52,7 +52,7 @@ services:
         value: admin@admin.com
       - key: PGADMIN_DEFAULT_PASSWORD
         value: admin
-    volumes:
-      - name: pgadmin_data
-        mountPath: /var/lib/pgadmin
-        sizeGB: 1
+    disk:
+      name: pgadmin_data
+      mountPath: /var/lib/pgadmin
+      sizeGB: 1
