@@ -23,8 +23,6 @@ services:
       DB_USER: user
       DB_PASSWORD: 1234
       DB_NAME: miapp
-      # Redis externo (Render o Upstash)
-      REDIS_URL: ${REDIS_URL}
     ports:
       - "3000:3000"
     depends_on:
