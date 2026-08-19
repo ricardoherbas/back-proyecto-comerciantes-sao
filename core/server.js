@@ -12,7 +12,14 @@ class Server {
   }
 
   middleware() {
-    this.app.use(cors())
+    // Configuración de CORS con tu dominio
+    const corsOptions = {
+      origin: ["https://qui3ro.com"], // dominio del front
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      allowedHeaders: ["Content-Type", "Authorization"]
+    }
+
+    this.app.use(cors(corsOptions))
     this.app.use(express.json())
     this.app.use(express.static('public'))
   }
